@@ -1,0 +1,85 @@
+<div class="inner_banner-section">
+    <img class="inner_banner-background-image" src="/image/common/inner-bg.png" alt="image alt" />
+    <div class="container">
+        <div class="inner_banner-content-block">
+            <h3 class="inner_banner-title">Note : <%= note.title %></h3>
+            <ul class="banner__page-navigator">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li class="active">
+                    <a href="/dashboard"> Dashboard </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="career_main-section section-padding-120">
+    <div class="container">
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-10 col-12 text-end">
+                <button onclick="confirmDelete('<%= note._id %>')" class="btn-masco btn-secondary-l09"><span>Delete</span></button>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-10 col-12">
+                <div class="form-box-style__form-wrapper bg-light-2">
+                    <form action="/dashboard/update-note/<%= note._id %>?_method=PUT" method="POST" class="form-box-style">
+                        <div class="form-box-style__form-inner">
+                            <div class="form-box-style__form-input">
+                                <h3 class="form-box-style-title">Title</h3>
+                                <input class="form-control bg-white" type="text" placeholder="Title" name="title" value="<%= note.title %>" required />
+                            </div>
+                            <div class="form-box-style__form-input">
+                                <h3 class="form-box-style-title">Content</h3>
+                                <textarea class="form-control bg-white textarea" name="body" placeholder="Write us your question here..." required><%= note.body %></textarea>
+                            </div>
+                        </div>
+                        <div class="form-box-style__form-input-button mt-4">
+                            <button type="submit" class="btn-masco w-100">Edit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<script>
+    function confirmDelete(noteId) {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonText: "Yes, delete it!",
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await fetch(`/dashboard/delete-note/${noteId}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    });
+                    if (response.ok) {
+                        Swal.fire("Deleted!", "The note has been deleted.", "success").then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "/dashboard";
+                            }
+                        });
+                    } else {
+                        Swal.fire("Error", "An error occurred while deleting the note.", "error");
+                    }
+                } catch (error) {
+                    Swal.fire("Error", "An error occurred while deleting the note.", "error");
+                }
+            }
+        });
+    }
+</script>

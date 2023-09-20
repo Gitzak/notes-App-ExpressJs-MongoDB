@@ -1,0 +1,32 @@
+<div class="inner_banner-section">
+    <img class="inner_banner-background-image" src="/image/common/inner-bg.png" alt="image alt" />
+    <div class="container">
+        <div class="inner_banner-content-block">
+            <h3 class="inner_banner-title">Note :</h3>
+            <ul class="banner__page-navigator">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li class="active">
+                    <a href="/dashboard"> Dashboard </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="career_main-section section-padding-120">
+    <div class="container">
+        <div class="row career-card-row navigation-active isotope-navigation">
+            <div class="col-12 grid-item portfolio-1 portfolio-3">
+                <div class="career-card">
+                    <div class="career-card__body">
+                        <h3 class="career-card__title"><%= note.title %></h3>
+                        <p><%= note.body %></p>
+                    </div>
+                    <a href="/dashboard/edit-note/<%= note._id %>" class="btn-link btn-arrow career-card__link">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,83 @@
+<div class="inner_banner-section">
+    <img class="inner_banner-background-image" src="/image/common/inner-bg.png" alt="image alt" />
+    <div class="container">
+        <div class="inner_banner-content-block">
+            <h3 class="inner_banner-title">Dashboard</h3>
+            <ul class="banner__page-navigator">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                <li class="active">
+                    <a href="/dashboard"> Dashboard </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="career_main-section section-padding-120">
+    <div class="container">
+        <% if(notes.length > 0) { %>
+        <div class="career-main__section-heading">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h2 class="heading-md text-black career_main-title">Hey <%= userName %></h2>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="/dashboard/add-note" class="btn-masco btn-masco--header rounded-pill btn-fill--up"> <span>+ Add Note</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="row career-card-row navigation-active isotope-navigation" style="position: relative; height: 981.141px">
+            <% notes.forEach(note => { %>
+            <div class="col-md-4 col-12 grid-item portfolio-1 portfolio-3" style="position: absolute; left: 0px; top: 0px">
+                <div class="career-card">
+                    <div class="career-card__body">
+                        <a href="/dashboard/note/<%= note._id %>"><h3 class="career-card__title"><%= note.title %></h3></a>
+                        <p><%= note.body %></p>
+                    </div>
+                    <a href="/dashboard/edit-note/<%= note._id %>" class="btn-link btn-arrow career-card__link">Edit</a>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12">
+                <div class="pagination mt-5">
+                    <div class="pagination-wrapper">
+                        <% if (current > 1) { %>
+                        <a class="btn btn--arrow" href="/dashboard/?page=<%= current - 1 %>" aria-label="Previous">
+                            <i class="fa fa-angle-left"></i>
+                        </a>
+                        <% } %> <% var i = (Number(current) > 2 ? Number(current) - 1 : 1) %> <% if (i !== 1) { %>
+                        <a class="btn btn-main" href="/dashboard/?page=1">1</a>
+                        <span class="pagination-dots">...</span>
+                        <% } %> <% for (; i <= (Number(current) + 1) && i <= pages; i++) { %>
+                        <a class="btn btn-main <% if (i == current) { %>active<% } %>" href="/dashboard/?page=<%= i %>"><%= i %></a>
+                        <% } %> <% if (i <= pages) { %>
+                        <span class="pagination-dots">...</span>
+                        <a class="btn btn-main" href="/dashboard/?page=<%= pages %>"><%= pages %></a>
+                        <% } %> <% if (current < pages) { %>
+                        <a class="btn btn--arrow" href="/dashboard/?page=<%= Number(current) + 1 %>" aria-label="Next">
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } else { %>
+        <div class="career-main__section-heading">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <h2 class="heading-md text-black career_main-title">Hey <%= userName %></h2>
+                    <p>Let's start with your first note!</p>
+                </div>
+                <div class="col-md-4 text-end">
+                    <a href="#" class="btn-masco btn-masco--header rounded-pill btn-fill--up"> <span>+ Add Note</span></a>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>

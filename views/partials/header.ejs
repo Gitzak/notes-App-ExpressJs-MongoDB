@@ -1,0 +1,58 @@
+<header class="site-header site-header--menu-left site-header--transparent site-header--sticky">
+    <div class="container">
+        <nav class="navbar site-navbar">
+            <div class="brand-logo">
+                <a href="#">
+                    <!-- light version logo (logo must be black)-->
+                    <img class="logo-light" src="/image/noteE_logo.png" alt="brand logo" />
+                    <!-- Dark version logo (logo must be White)-->
+                    <img class="logo-dark" src="/image/noteE_logo.png" alt="brand logo" />
+                </a>
+            </div>
+            <div class="menu-block-wrapper">
+                <div class="menu-overlay"></div>
+                <nav class="menu-block" id="append-menu-header">
+                    <div class="mobile-menu-head">
+                        <a href="index.html">
+                            <img src="/image/icons/logo-whites.svg" alt="brand logo" />
+                        </a>
+                        <div class="current-menu-title"></div>
+                        <div class="mobile-menu-close">&times;</div>
+                    </div>
+                    <ul class="site-menu-main">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link-item drop-trigger">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/about" class="nav-link-item drop-trigger">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link-item drop-trigger">Pricing</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/contact" class="nav-link-item drop-trigger">Contact Us</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="mobile-menu-trigger">
+                <span></span>
+            </div>
+            <% if (locals.loggedIn) { %>
+            <div class="header-cta-btn-wrapper">
+                <a href="/dashboard" class="btn-masco btn-masco--header btn-primary-l08 btn-fill--slide"> <span>Dashboard</span></a>
+                <a href="/logout" class="btn-masco btn-masco--header btn-masco--header-secondary">
+                    <span>Logout</span>
+                </a>
+            </div>
+            <% } else { %>
+            <div class="header-cta-btn-wrapper">
+                <a href="/login" class="btn-masco btn-masco--header btn-masco--header-secondary">
+                    <span>Login</span>
+                </a>
+                <a href="/register" class="btn-masco btn-masco--header btn-primary-l08 btn-fill--slide"> <span>Sign up free</span></a>
+            </div>
+            <% } %>
+        </nav>
+    </div>
+</header>
